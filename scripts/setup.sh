@@ -138,12 +138,19 @@ case "$ID" in
             as_sudo 'apt-get -y install sshpass' >/dev/null
         fi
 
-        # Install pip
+        # Install python3-pip
         if ! which pip3 >/dev/null 2>&1; then
-            echo "Installing pip..."
+            echo "Installing python3-pip..."
             as_sudo 'apt-get -y install python3-pip' >/dev/null
         fi
         pip3 --version
+	
+	# Install python2-pip
+        if ! which pip >/dev/null 2>&1; then
+            echo "Installing python-pip..."
+            as_sudo 'apt-get -y install python-pip' >/dev/null
+        fi
+        pip --version
 
         # Install setuptools
         if ! dpkg -l python-setuptools >/dev/null 2>&1; then
